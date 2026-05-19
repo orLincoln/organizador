@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.pessoal.organizador.DTOs.NovaNotaDTO;
 import com.pessoal.organizador.enums.NoteType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Table(name="notas")
-@Entity(name = "nota")
+@Entity(name = "Nota")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
@@ -26,14 +27,18 @@ public class Nota {
     
     private String title;
 
+    @Column(length=512)
     private String content;
 
+    @Column(length=256)
     private String obs;
 
     private Boolean completed;
 
-    private NoteType type;
+    private LocalDateTime expireAt;
+    private boolean expired;
 
+    private NoteType noteType;
 
 
     private int ano;
@@ -42,22 +47,24 @@ public class Nota {
     private int hora;
     private int minuto;
     
-    private LocalDateTime expire;
 
 
-    public void setExpire(LocalDateTime expire) {
-        this.expire = expire;
+    public void setExpireAt(LocalDateTime expireAt) {
+        this.expireAt = expireAt;
     }
 
     public Nota(NovaNotaDTO d){
         this.title = d.title();
         this.content = d.content(); 
         this.obs = d.obs();
+        this.expired = false;
+        this.completed = false;
+        this.noteType = d.noteType();
 
-        //expira em 30 dias
-        this.expire = LocalDateTime.now().plusDays(30);
+        //expira em 30 dias por padrão, caso o usuário não defina uma data de expiração
+        this.expireAt = d.expireAt() != null ? d.expireAt() : LocalDateTime.now().plusDays(30);
 
-        //salva data do post
+        //salva data do postamento da nota
         LocalDateTime agora = LocalDateTime.now();
         this.ano    = agora.getYear();
         this.mes    = agora.getMonthValue();
@@ -99,12 +106,28 @@ public class Nota {
         return obs;
     }
 
-    public LocalDateTime getExpire() {
-        return expire;
+    public LocalDateTime getExpireAt() {
+        return expireAt;
+    }
+
+    public boolean getExpired() {
+        return expired;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
+    }
+
+    public NoteType getNoteType() {
+        return noteType;
+    }
+
+    public void setNoteType(NoteType noteType) {
+        this.noteType = noteType;
     }
 
 
