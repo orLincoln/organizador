@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pessoal.organizador.DTOs.AtualizaDTO;
 import com.pessoal.organizador.DTOs.ListaNotasDTO;
 import com.pessoal.organizador.DTOs.NovaNotaDTO;
-import com.pessoal.organizador.interfaces.Nota;
+import com.pessoal.organizador.models.Nota;
 import com.pessoal.organizador.repositorys.NotasRepository;
 
 import jakarta.transaction.Transactional;

@@ -1,0 +1,4 @@
+package com.pessoal.organizador.DTOs;
+
+public record DadosUsuarioLogin(String login,String nome, String senha) {
+}
