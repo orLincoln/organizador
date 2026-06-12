@@ -1,6 +1,7 @@
 package com.pessoal.organizador.models;
 
 import com.pessoal.organizador.DTOs.DadosUsuarioLogin;
+import com.pessoal.organizador.DTOs.DadosUsuarioSignup;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -36,12 +37,16 @@ public class User implements UserDetails {
 
 
     public User(DadosUsuarioLogin d){
-        if(d.nome() == null){
-            this.nome = d.login();
-        }
         this.login = d.login();
         this.senha = d.senha();
     }
+
+    public User(String login, String nome, String senha){
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,11 +55,11 @@ public class User implements UserDetails {
 
     @Override
     public @Nullable String getPassword() {
-        return "";
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return login;
     }
 }
