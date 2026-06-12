@@ -14,6 +14,8 @@ import com.pessoal.organizador.interfaces.Nota;
 
 
 public interface NotasRepository extends JpaRepository<Nota, Long> {
+
+
     List<ListaNotasDTO> findByExpireAtBefore(LocalDateTime dataHora);
     Page<Nota> findByExpiredFalse(Pageable paginacao);
 
