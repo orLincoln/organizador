@@ -3,7 +3,7 @@ package com.pessoal.organizador.DTOs;
 import java.time.LocalDateTime;
 
 import com.pessoal.organizador.enums.NoteType;
-import com.pessoal.organizador.interfaces.Nota;
+import com.pessoal.organizador.models.Nota;
 
 import jakarta.validation.constraints.NotBlank;
 

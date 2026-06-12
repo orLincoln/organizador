@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.pessoal.organizador.DTOs.ListaNotasDTO;
-import com.pessoal.organizador.interfaces.Nota;
+import com.pessoal.organizador.models.Nota;
 
 
 public interface NotasRepository extends JpaRepository<Nota, Long> {

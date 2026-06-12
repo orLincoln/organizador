@@ -1,4 +1,4 @@
-package com.pessoal.organizador.interfaces;
+package com.pessoal.organizador.models;
 
 import java.time.LocalDateTime;
 
